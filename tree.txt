@@ -1,0 +1,60 @@
+public void insert(String synonym, String name, String origin, int period){
+    Node newNode = new Node(synonym, name, origin, period);
+    if (root == null){
+        root = newNode;
+    }else{
+        Node current = root;
+        Node parent;
+        while (true){
+            parent = current;
+            if (synonym.compareTo(current.getSynonym()) < 0){
+                current = current.leftChild;
+                if(current == null){
+                    parent.leftChild  = newNode;
+                    return;
+                }        
+            }else{
+                current = current.rightChild;
+                if(current == null){
+                    parent.rightChild = newNode;
+                    return;
+                }
+            }
+        }
+    }
+}
+    
+public Node search(String k){
+    Node current = root;
+    while(current != null){
+        if(current.getSynonym().equalsIgnoreCase(k)){
+            return current;
+        }else if(k.compareTo(current.getSynonym()) > 0){
+            current = current.leftChild;
+        }else{
+            current = current.rightChild;
+        }
+    }
+        return null;
+}
+public boolean delete(String key){
+        return false;
+}
+private Node getSuccessor(Node d){
+        return null;
+} 
+public String display(int op){
+    order = "";
+    switch(op){
+        case 1:
+            inOrder(root);
+            break;
+        case 2:
+            inOrder(root);
+            break;
+        case 3:
+            inOrder(root);
+            break;
+    }
+        return order;
+} 
