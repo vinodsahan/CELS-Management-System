@@ -1,0 +1,18 @@
+private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        DBConnection con = new DBConnection();
+        String sql = "update Exam set ExamType = ?, ExamHall = ?, ExamTime = ? where ExamID = ?";
+        
+        try {
+            PreparedStatement prep = con.getDBConnection().prepareStatement(sql);
+            prep.setString(1, cmbExam.getSelectedItem().toString());
+            prep.setString(2, cmbHall.getSelectedItem().toString());
+            prep.setString(3, txtTime.getText());
+            prep.setString(4, lblId.getText());
+            prep.executeUpdate();
+             
+            JOptionPane.showMessageDialog(null, "Updated");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        showTableData();
+    }          
